@@ -1,11 +1,14 @@
 package controle;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Properties;
 import java.util.Scanner;
 
 import dominio.Pessoa;
@@ -110,6 +113,47 @@ public class Programa {
 			e1.printStackTrace();
 		}
 		System.out.println();
+		
+		
+		
+		try {
+			Constructor ponteiroP = c.getConstructor(String.class, String.class, int.class);
+			Object person = ponteiroP.newInstance("4321-2","João",9);
+			
+			Properties prop = new Properties();
+			InputStream in = ClassLoader.getSystemClassLoader().getResourceAsStream("tde.properties");
+			prop.load(in);
+			in.close();
+			
+			String lista = prop.getProperty("Collection");
+			
+			System.out.println(lista);
+			
+		} catch (NoSuchMethodException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SecurityException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 		//
 		// Trabalhando com Injeção de Dependência e Inversão de Controle. Observe que o código só apresenta
